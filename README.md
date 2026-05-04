@@ -102,16 +102,3 @@ Get-Process java,javaw -ErrorAction SilentlyContinue
 After this update, the panel writes `.mdj-process.json` inside each server/proxy folder and blocks duplicate starts when it remembers an already-running Java process.
 
 If a new server fails with `Overworld settings missing`, use `Servers > Reset World`. The panel moves `world`, `world_nether`, and `world_the_end` into `backups/world-reset-...`, then the next start generates a fresh world.
-
-## Proxy Starts But Players Cannot Join
-
-If Velocity starts and then players see `Unable to connect you to lobby`, check that every linked backend server is running on the port listed in the proxy config.
-
-For example, if `velocity.toml` points to:
-
-```toml
-con1 = "127.0.0.1:30066"
-con2 = "127.0.0.1:30067"
-```
-
-Then `con1` must be online on port `30066`, and `con2` must be online on port `30067`. A `Connection refused` line means the proxy is alive, but the backend Minecraft server is offline or using a different port.
